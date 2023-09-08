@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e47d279b2dba4199a9ccae895a6f6ae2" Name="Diagram1">
+        <EntityTypeShape EntityType="MoneyWaveModel.Admin" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.Business" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.BuyShare" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.Region" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.Role" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.SellShare" Width="1.5" PointX="13.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.Share" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MoneyWaveModel.User" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="MoneyWaveModel.FK__Admins__role_id__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__Business__region__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__Business__role_i__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__BuyShares__busin__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__SellShare__busin__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__Shares__business__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__BuyShares__share__4BAC3F29" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__BuyShares__user___4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__Users__user_addr__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__Users__role_id__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__SellShare__share__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="MoneyWaveModel.FK__SellShare__user___5165187F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

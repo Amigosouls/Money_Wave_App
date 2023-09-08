@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Login</h2>
+
+
+<style>
+    .error {
+        background-color: black;
+        color: red;
+        font-weight: 800;
+        font-size: 18px;
+    }
+</style>
+
+@using (Html.BeginForm("Login","Login",FormMethod.Post))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="error">@ViewBag.Msg</div>
+    <div class="card">
+        <div class="card-header bg-primary">
+            Login form
+        </div>
+
+        <div class="card-body">
+            <div class="form-group mt-3">
+              <input name="user_email" type="email" placeholder="email" class="form-control" />
+            </div>
+            <div class="form-group mt-3">
+               <input name="password" type="password" placeholder="password" class="form-control" />
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">Login</button>
+                @Html.ActionLink("New user", "Register")
+            </div>
+        </div>
+    </div>
+}
