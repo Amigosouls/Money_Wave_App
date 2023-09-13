@@ -14,6 +14,7 @@ namespace Money_Wave_App.Models
     
     public partial class Admin
     {
+        public int admin_id { get; set; }
         public string admin_name { get; set; }
         public Nullable<int> role_id { get; set; }
         public Nullable<System.DateTime> last_login { get; set; }
@@ -21,7 +22,6 @@ namespace Money_Wave_App.Models
         public string password { get; set; }
         public string email_id { get; set; }
         public Nullable<bool> isDeleted { get; set; }
-        public int admin_id { get; set; }
     
         public virtual Role Role { get; set; }
     }

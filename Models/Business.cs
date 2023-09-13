@@ -32,6 +32,7 @@ namespace Money_Wave_App.Models
         public Nullable<decimal> net_worth { get; set; }
         public Nullable<int> role_id { get; set; }
         public Nullable<int> region_id { get; set; }
+        public string logo { get; set; }
     
         public virtual Region Region { get; set; }
         public virtual Role Role { get; set; }

@@ -1,0 +1,170 @@
+﻿@model Money_Wave_App.Models.User
+
+@using (Html.BeginForm("RegisterUser", "Register", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @*<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="~/Scripts/webcam.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Webcam.set({
+                width: 320,
+                height: 240,
+                image_format: 'jpeg',
+                jpeg_quality: 90
+            });
+            Webcam.attach('#webcam');
+            $("#btnCapture").click(function () {
+                Webcam.snap(function (data_uri) {
+                    $("#imgCapture")[0].src = data_uri;
+                    $("#btnUpload").removeAttr("disabled");
+                });
+            });
+            $("#btnUpload").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/Register/SaveCapture",
+                    data: "{data: '" + $("#imgCapture")[0].src + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (r) { }
+                });
+            });
+
+        });
+        
+    </script>
+    <script>
+        $("#btnUpload").click(function () {
+            $("#img").value = "dgfuwegfiuewgfiwe";
+});
+    </script>*@
+
+    if (ViewBag.Upload != null)
+    {
+        <div class="bg-success border-primary text-bg-info">
+            @ViewBag.Upload
+        </div>
+    }
+    if (ViewBag.UploadError != null)
+    {
+        <div class="bg-danger border-danger text-bg-danger">
+            @ViewBag.UploadError
+        </div>
+    }
+    @Html.ActionLink("Sign Up Business","RegisterBusiness","Register",new {@class = "btn btn-primary ms-auto text-end"})
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.user_addr, "user_addr", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="user_addr" id="user_addr" class="form-control">
+                    @foreach (var reg in ViewBag.region.Keys)
+                    {
+                      <option value="@ViewBag.region[reg]">@reg</option>
+
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.user_addr, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phone_no, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone_no, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone_no, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.remember_me, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.remember_me)
+                    @Html.ValidationMessageFor(model => model.remember_me, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.img, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @{
+                    if (TempData["img"] != null)
+                    {
+                        <input type="file" name="img" id="img" value="@TempData["img"]" class="form-control" />
+                    }
+                    else
+                    {
+                        <input type="file" name="img" id="img"  class="form-control" />
+                    }
+                }
+
+                @Html.ValidationMessageFor(model => model.img, "", new { @class = "text-danger" })
+            </div>
+            @*<table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <th align="center"><u>Live Camera</u></th>
+                    <th align="center"><u>Captured Picture</u></th>
+                </tr>
+                <tr>
+                    <td><div id="webcam"></div></td>
+                    <td><img id="imgCapture" /></td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="button" id="btnCapture" value="Capture" />
+                    </td>
+                    <td align="center">
+                        <input type="button" id="btnUpload" value="Upload" disabled="disabled" />
+                    </td>
+                </tr>
+            </table>*@
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="RegisterUser" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

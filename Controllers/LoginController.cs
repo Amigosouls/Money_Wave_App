@@ -11,8 +11,8 @@ namespace Money_Wave_App.Controllers
     public class LoginController : Controller
     {
         // GET: Login
-        MoneyWaveEntities2 db = new MoneyWaveEntities2();
-        public ActionResult Login()
+        MoneyWaveEntities db = new MoneyWaveEntities();
+        public ActionResult Index()
         {
 
             return View();
@@ -31,20 +31,44 @@ namespace Money_Wave_App.Controllers
                     cookie.Expires = ticket.Expiration;
                 }
                 Response.Cookies.Add(cookie);
+                if(userRole.role_name == "Users")
+                {
+                    User logged_user = db.Users.FirstOrDefault(u => u.email == user_email);
+                    Session["UserData"] = logged_user.username;
+                    Session["UserImg"] = logged_user.img;
+                }
+                else if(userRole.role_name == "Admin")
+                {
+                    Admin logged_user = db.Admins.FirstOrDefault(u => u.email_id == user_email);
+                    Session["UserData"] = logged_user.admin_name;
+
+                }
+                else if (userRole.role_name == "Business")
+                {
+                    Business logged_user = db.Businesses.FirstOrDefault(u => u.email == user_email);
+                    Session["UserData"] = logged_user.acronym;
+                    Session["UserImg"] = logged_user.logo;
+                }
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 msg = "User Name or Password is Invalid";
+                ViewBag.Msg = msg;
+                return RedirectToAction("Index", "Login");
             }
-            ViewBag.Msg = msg;
-            return View();
+           
         }
        
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Login","Login");
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult Register()
+        {
+            return RedirectToAction("UserRegister","Register");
         }
 
     }

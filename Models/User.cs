@@ -32,6 +32,7 @@ namespace Money_Wave_App.Models
         public Nullable<bool> isDeleted { get; set; }
         public Nullable<bool> remember_me { get; set; }
         public Nullable<decimal> account_bal { get; set; }
+        public string img { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BuyShare> BuyShares { get; set; }

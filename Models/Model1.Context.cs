@@ -15,10 +15,10 @@ namespace Money_Wave_App.Models
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MoneyWaveEntities2 : DbContext
+    public partial class MoneyWaveEntities : DbContext
     {
-        public MoneyWaveEntities2()
-            : base("name=MoneyWaveEntities2")
+        public MoneyWaveEntities()
+            : base("name=MoneyWaveEntities")
         {
         }
     

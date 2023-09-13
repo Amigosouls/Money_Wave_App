@@ -6,25 +6,47 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="/Content/Site.css" type="text/css" />
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
 
-            <img src="@(Url.Content("~/Photos/Money.gif"))" alt="logo image" height="100"/>
+            <img src="@(Url.Content("~/Photos/Money.gif"))" alt="logo image" height="100" />
             <span id="logo"> @Html.ActionLink("Money Wave", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</span>
 
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-            <ul class="navbar-nav flex-grow-1">
-            <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-            <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-            <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <ul class="navbar-nav flex-grow-1">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
+
             </div>
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    string username = Session["UserData"] as string;
+                    string userImg = Session["UserImg"] as string;
+                   <ul class="navbar-nav flex-grow-1 ms-auto">
+                                   <li>@username</li>
+                                   <li><img src="@userImg"/></li>
+                                   <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link", @style = "color:red;font-size:20px;" })</li>
+                   </ul>
+                                
+
+                }
+                else
+                {
+                    <ul class="navbar-nav flex-grow-1 ms-auto">
+                        <li>@Html.ActionLink("Login/Register", "Index", "Login", new { area = "" }, new { @class = "nav-link", @style="color:red;font-size:20px;" })</li>
+                    </ul>
+                }
+            }
         </div>
     </nav>
     <div class="container body-content">
