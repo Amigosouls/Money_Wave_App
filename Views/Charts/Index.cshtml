@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<br />
+<h3>Shares Data</h3>
+
+<div id="Barchart"> </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Charts/SharesBarchart",
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                sharesFunc(response);
+            },
+        });
+
+        function sharesFunc(jsonData) {
+            var totalShare = [];
+            var sharePrice = [];
+            console.log(jsonData);
+            for (var i = 0; i < jsonData.length; i++) {
+                totalShare.push({
+                    label: jsonData[i].business_id,
+                    y: jsonData[i].total_shares
+                });
+                sharePrice.push({
+                    label: jsonData[i].business_id,
+                    y: jsonData[i].share_price
+                })
+            }
+
+            var sharechart = new CanvasJS.Chart("Barchart", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Shares"
+                },
+                axisY: {
+                    title: "Price(USD$)",
+                    titleFontSize: 24,
+                    includeZero: true,
+
+                    suffix: '$'
+                },
+                legend: {
+                    cursor: "pointer",
+                    fontSize: 16,
+                    itemclick: toggleDataSeries
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [
+                    {
+                        name: "No Of Shares",
+                        type: "spline",
+                        showInLegend: true,
+                        yValueFormatString: "#,##0.0#\"%\"",
+                        dataPoints: totalShare
+                    },
+                    {
+                        name: "Share Price",
+                        showInLegend: true,
+                        type: "column",
+                        yValueFormatString: "#,##0",
+                        dataPoints: sharePrice
+                    },
+                ]
+            });
+            sharechart.render();
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else {
+                    e.dataSeries.visible = true;
+                }
+                sharechart.render();
+            }
+        }
+    });
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "/Charts/Regionschart",
+            data: {},
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (response) {
+                successFunc(response);
+            },
+        });
+
+        function successFunc(jsonData) {
+            var gdp = [];
+            var gdpGrowth = [];
+            console.log(jsonData);
+            for (var i = 0; i < jsonData.length; i++) {
+                gdp.push({
+                    label: jsonData[i].region_name,
+                    y: jsonData[i].gdp
+                });
+                gdpGrowth.push({
+                    label: jsonData[i].region_name,
+                    y: jsonData[i].gdp_growth
+                })
+            }
+
+            var chart = new CanvasJS.Chart("pieChart", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Country GDP"
+                },
+                axisY: {
+                    title: "GDP",
+                    titleFontSize: 24,
+                    includeZero: true,
+
+                    suffix: '%'
+                },
+                legend: {
+                    cursor: "pointer",
+                    fontSize: 16,
+                    itemclick: toggleDataSeries
+                },
+                toolTip: {
+                    shared: true
+                },
+                data: [
+                    {
+                        name: "GDP",
+                        type: "spline",
+                        showInLegend: true,
+                        yValueFormatString: "#,##0.0#\"%\"",
+                        dataPoints: gdp
+                    },
+                    {
+                        name: "GDP GROWTH",
+                        showInLegend: true,
+                        type: "spline",
+                        yValueFormatString: "#,##0.0#\"%\"",
+                        dataPoints: gdpGrowth
+                    },
+                ]
+            });
+            chart.render();
+            function toggleDataSeries(e) {
+                if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                    e.dataSeries.visible = false;
+                }
+                else {
+                    e.dataSeries.visible = true;
+                }
+                chart.render();
+            }
+        }
+    });
+</script>
+<div id = "pieChart">
+    </div>
+
+<script>
+
+</script>
+<script>
+    var chart1 = new CanvasJS.Chart("chartContainer1", {
+        title: {
+            text: "Live Data"
+        },
+        data: [{
+            type: "line",
+            dataPoints: [
+                { label: "apple", y: 10 },
+                { label: "orange", y: 15 },
+                { label: "banana", y: 25 },
+                { label: "mango", y: 30 },
+                { label: "grape", y: 28 }
+            ]
+        }]
+    });
+    var chart2 = new CanvasJS.Chart("chartContainer2", {
+        title: {
+            text: "Live Data"
+        },
+        data: [{
+            type: "column",
+            dataPoints: [
+                { label: "apple", y: 10 },
+                { label: "orange", y: 15 },
+                { label: "banana", y: 25 },
+                { label: "mango", y: 30 },
+                { label: "grape", y: 28 }
+            ]
+        }]
+    });
+
+    chart1.render();
+    chart2.render();
+</script>
+<div id="chartContainer2"></div>
+<div id="chartContainer1"></div>

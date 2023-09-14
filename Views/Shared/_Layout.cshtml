@@ -6,6 +6,14 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/c3.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script src="~/Scripts/c3.min.js"></script>
+    <script src="~/Scripts/d3.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <link href="/Content/Site.css" type="text/css" />
 </head>
 <body>
@@ -32,11 +40,12 @@
                 {
                     string username = Session["UserData"] as string;
                     string userImg = Session["UserImg"] as string;
-                   <ul class="navbar-nav flex-grow-1 ms-auto">
-                                   <li>@username</li>
-                                   <li><img src="@userImg"/></li>
-                                   <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link", @style = "color:red;font-size:20px;" })</li>
-                   </ul>
+                        <ul class="navbar-nav flex-grow-1 ms-auto">
+                            <li>@username &nbsp; &nbsp;
+                           <img src="@(Url.Content(userImg))" style="border-radius:30px 30px;" height="30" width="40" /></li>
+
+                            <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link", @style = "color:red;font-size:20px;" })</li>
+                        </ul>
                                 
 
                 }
