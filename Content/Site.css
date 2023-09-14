@@ -3,25 +3,26 @@
     margin-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
+    background-color: black !important;}
+body{
+    background-color:black !important;
 }
-
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
 .dl-horizontal dt {
     white-space: normal;
 }
-
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
 }
-.navbar{
-    background-color:forestgreen !important;
-}
 
+.navbar{
+    background-color:transparent !important;
+}
 #logo{
     background-image:url("/App_Data/Money.gif");
 }

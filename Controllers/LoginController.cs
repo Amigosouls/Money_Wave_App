@@ -46,7 +46,8 @@ namespace Money_Wave_App.Controllers
                 else if (userRole.role_name == "Business")
                 {
                     Business logged_user = db.Businesses.FirstOrDefault(u => u.email == user_email);
-                    Session["UserData"] = logged_user.acronym;
+                    Session["UserData"] = logged_user
+                        .acronym;
                     Session["UserImg"] = logged_user.logo;
                 }
                 return RedirectToAction("Index", "Home");

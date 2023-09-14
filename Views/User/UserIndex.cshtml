@@ -1,0 +1,28 @@
+﻿@model Money_Wave_App.Models.User
+
+@{
+    if (Session["UserData"] != null)
+    {
+        string username = Session["UserData"] as string;
+
+
+
+        <div class="row bg-white text-black">
+            <h5>Welcome Back @username</h5>
+        </div>
+    }
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-6 bg-primary text-white">
+            <h4>Your Account balance</h4>
+            <h2></h2>
+        </div>
+        <div class="col-3">
+
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+</div>

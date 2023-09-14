@@ -7,7 +7,8 @@ using System.Web.Mvc;
 namespace Money_Wave_App.Controllers
 {
     public class HomeController : Controller
-    { 
+    {
+        [Authorize]
         public ActionResult Index()
         {
             return View();
